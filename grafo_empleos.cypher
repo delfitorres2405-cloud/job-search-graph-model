@@ -17,14 +17,17 @@ UNWIND [
   {_id:28, properties:{Habilidad:"Docker"}}, 
   {_id:30, properties:{Habilidad:"Figma"}}, 
   {_id:31, properties:{Habilidad:"Diseño UX"}}, 
-  {_id:32, properties:{Habilidad:"Adobe XD"}}
+  {_id:32, properties:{Habilidad:"Adobe XD"}},
+  {_id:33, properties:{Habilidad:"A/B testing"}}, 
+  {_id:34, properties:{Habilidad:"Full-funnel marketing"}}
 ] AS row
 CREATE (n:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row._id}) SET n += row.properties SET n:HABILIDAD;
 
 UNWIND [
   {_id:12, properties:{Ciudad:"Rosario", Pais:"Argentina"}}, 
   {_id:13, properties:{Ciudad:"Buenos Aires", Pais:"Argentina"}}, 
-  {_id:14, properties:{Ciudad:"Cordoba", Pais:"Argentina"}}
+  {_id:14, properties:{Ciudad:"Cordoba", Pais:"Argentina"}},
+  {_id:35, properties:{Ciudad:"Bariloche", Pais:"Argentina"}}
 ] AS row
 CREATE (n:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row._id}) SET n += row.properties SET n:UBICACION;
 
@@ -32,7 +35,8 @@ UNWIND [
   {_id:15, properties:{Empresa:"PwC"}}, 
   {_id:16, properties:{Empresa:"Banco Santander"}}, 
   {_id:17, properties:{Empresa:"Globant"}}, 
-  {_id:18, properties:{Empresa:"Mercado Libre"}}
+  {_id:18, properties:{Empresa:"Mercado Libre"}},
+  {_id:36, properties:{Empresa:"Montagne"}}
 ] AS row
 CREATE (n:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row._id}) SET n += row.properties SET n:EMPRESA;
 
@@ -42,7 +46,8 @@ UNWIND [
   {_id:25, properties:{Anios_experiencia:3, Salario_mensual:2200000, Cod_oferta:103, Puesto:"Desarrollador Frontend", Modalidad:"Presencial", Horas_semanales:42}}, 
   {_id:26, properties:{Anios_experiencia:1, Salario_mensual:1700000, Cod_oferta:102, Puesto:"Analista QA", Modalidad:"Remoto", Horas_semanales:40}}, 
   {_id:27, properties:{Anios_experiencia:3, Salario_mensual:2500000, Cod_oferta:110, Porcentaje_carrera_min:75, Puesto:"Desarrollador Backend", Modalidad:"Remoto", Horas_semanales:40, Estado:"Cerrada"}}, 
-  {_id:29, properties:{Anios_experiencia:2, Salario_mensual:1900000, Cod_oferta:120, Puesto:"Diseñador UX/UI", Modalidad:"Hibrido", Horas_semanales:30}}
+  {_id:29, properties:{Anios_experiencia:2, Salario_mensual:1900000, Cod_oferta:120, Puesto:"Diseñador UX/UI", Modalidad:"Hibrido", Horas_semanales:30}},
+  {_id:37, properties:{Anios_experiencia:2, Salario_mensual:2000000, Cod_oferta:130, Puesto:"Growth Marketing Manager", Modalidad:"Remoto", Horas_semanales:35}}
 ] AS row
 CREATE (n:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row._id}) SET n += row.properties SET n:OFERTA;
 
@@ -73,13 +78,17 @@ UNWIND [
   {start: {_id:24}, end: {_id:1}, properties:{}}, 
   {start: {_id:24}, end: {_id:9}, properties:{}}, 
   {start: {_id:26}, end: {_id:2}, properties:{}}, 
-  {start: {_id:26}, end: {_id:3}, properties:{}},
+  {start: {_id:26}, end: {_id:3}, properties:{}}, 
   {start: {_id:27}, end: {_id:1}, properties:{}}, 
   {start: {_id:27}, end: {_id:9}, properties:{}}, 
   {start: {_id:27}, end: {_id:28}, properties:{}}, 
   {start: {_id:29}, end: {_id:30}, properties:{}}, 
   {start: {_id:29}, end: {_id:31}, properties:{}}, 
-  {start: {_id:29}, end: {_id:32}, properties:{}}
+  {start: {_id:29}, end: {_id:32}, properties:{}},
+  {start: {_id:37}, end: {_id:10}, properties:{}}, 
+  {start: {_id:37}, end: {_id:0}, properties:{}}, 
+  {start: {_id:37}, end: {_id:33}, properties:{}}, 
+  {start: {_id:37}, end: {_id:34}, properties:{}}
 ] AS row
 MATCH (start:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.start._id})
 MATCH (end:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.end._id})
@@ -89,7 +98,8 @@ UNWIND [
   {start: {_id:23}, end: {_id:12}, properties:{}}, 
   {start: {_id:24}, end: {_id:13}, properties:{}}, 
   {start: {_id:26}, end: {_id:14}, properties:{}}, 
-  {start: {_id:29}, end: {_id:14}, properties:{}}
+  {start: {_id:29}, end: {_id:14}, properties:{}},
+  {start: {_id:37}, end: {_id:35}, properties:{}}
 ] AS row
 MATCH (start:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.start._id})
 MATCH (end:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.end._id})
@@ -120,7 +130,8 @@ UNWIND [
   {start: {_id:15}, end: {_id:29}, properties:{}}, 
   {start: {_id:16}, end: {_id:23}, properties:{}}, 
   {start: {_id:17}, end: {_id:27}, properties:{}}, 
-  {start: {_id:18}, end: {_id:24}, properties:{}}
+  {start: {_id:18}, end: {_id:24}, properties:{}},
+  {start: {_id:36}, end: {_id:37}, properties:{}}
 ] AS row
 MATCH (start:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.start._id})
 MATCH (end:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.end._id})
@@ -155,7 +166,8 @@ UNWIND [
   {start: {_id:19}, end: {_id:23}, properties:{Fecha_postulacion:date('2026-06-20')}}, 
   {start: {_id:21}, end: {_id:23}, properties:{Fecha_postulacion:date('2026-06-23')}}, 
   {start: {_id:22}, end: {_id:26}, properties:{Fecha_postulacion:date('2026-06-19')}}, 
-  {start: {_id:22}, end: {_id:27}, properties:{Fecha_postulacion:date('2026-06-21')}}
+  {start: {_id:22}, end: {_id:27}, properties:{Fecha_postulacion:date('2026-06-21')}},
+  {start: {_id:20}, end: {_id:37}, properties:{Fecha_postulacion:date('2026-07-25')}}
 ] AS row
 MATCH (start:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.start._id})
 MATCH (end:`UNIQUE IMPORT LABEL`{`UNIQUE IMPORT ID`: row.end._id})
